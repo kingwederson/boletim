@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim da Defesa Civil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        div.cartao {
+            width: 1080px;
+            height: 1080px;
+            border: 1px solid black;
+            background-image: url('img/sunny-day.jpg');
+            color: white;
+            font-family: sans-serif;
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        div.cabecalho {
+            background-color: rgba(255, 255, 255, 0.89);
+            color: orangered;
+        }
+
+        div.rodape {
+            width: 100%;
+            display: block;
+            position: absolute;
+            top: 950px;
+            left: 0px;
+        }
+
+        div.rodape table {
+            margin: auto;
+        }
+
+        div.camada {
+            display: inline-flex;
+        }
+
+        div.graficoHC{
+            max-height: 500px;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        img.logo {
+            max-height: 96px;
+        }
+
+        img.informativo {
+            border: 1px solid black;
+        }
+
+        .mini{
+            width:400px;
+            height: auto;
+        }
+
+        figure {
+            margin: 0px;
+            padding: 0px;
+            max-width: 730px;
+        }
+
+        p {
+            text-align: justify;
+            padding: 0px 5px;
+            background-color: #000a;
+            max-width: 100%;
+            margin: 7px;
+        }
+
+        table {
+            max-width: 95%;
+        }
+
+        table.previsao {
+            border-collapse: collapse;
+            border: 1px solid white;
+            margin: 7px;
+        }
+
+        table.previsao td {
+            white-space: nowrap;
+        }
+
+        table:not(.cabecalho) {
+            background-color: #0007;
+        }
+
+        th,
+        td {
+            border-top: 0.5px dotted white;
+            padding: 3px;
+        }
+
+        th {
+            font-family: 'Neo Sans';
+        }
+
+        td.data {
+            font-family: 'Neo Sans';
+            text-align: center;
+        }
+
+        td.termo {
+            font-family: 'Neo Sans';
+            font-size: 0.75em;
+        }
+
+        td.legenda {
+            font-family: 'Nimbus Sans Narrow';
+        }
+
+        table.grafico tr td {
+            height: 36px;
+            width: 100%;
+        }
+
+        table#alerta {
+            border-collapse: collapse;
+            margin: 7px;
+        }
+
+        table#alerta td {
+            border: 1px dotted yellow;
+        }
+
+        th.nowrap,
+        td.nowrap {
+            white-space: nowrap;
+        }
+
+        em {
+            font-weight: bold;
+            color: yellow;
+        }
+
+        div.informativo {
+            font-size: 12.9pt;
+        }
+
+        .esconder {
+            display: none !important;
+        }
+
+        #downloadBtn {
+            display: block;
+            margin: auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .flex{
+            display: inline-flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cartao" id="cartao">
+
+        <div class="cabecalho">
+            <table class="cabecalho" style="width:80%;margin:auto;">
+                <tr>
+                    <td>
+                        <img src="img/logo.png" class="logo">
+                    </td>
+                    <td>
+                        <h1>BOLETIM DA DEFESA CIVIL<br />quarta-feira 26 de fevereiro de 2025</h1>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="camada">
+
+            <table class="previsao">
+                <tr>
+                    <th colspan="5" class="nowrap">
+                        <h3>Previsão para Bom Jardim de Minas</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th>dia</th>
+                    <th>&#127777;</th>
+                    <th>&#128167;</th>
+                    <th>&#9748;</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                    <td class="data">qua</td>
+                    <td class="termo">
+                        32<sup>o</sup>C<br />
+                        18<sup>o</sup>C
+                    </td>
+                    <td class="umidade">49%</td>
+                    <td class="tempo"><img src="img/parcialmente_nublado.png"></td>
+                    <td class="legenda">Parcialmente nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">qui</td>
+                    <td class="termo">
+                        32<sup>o</sup>C<br />
+                        18<sup>o</sup>C
+                    </td>
+                    <td class="umidade">46%</td>
+                    <td class="tempo"><img src="img/ensolarado.png"></td>
+                    <td class="legenda">Ensolarado</td>
+                </tr>
+                <tr>
+                    <td class="data">sex</td>
+                    <td class="termo">
+                        33<sup>o</sup>C<br />
+                        19<sup>o</sup>C
+                    </td>
+                    <td class="umidade">40%</td>
+                    <td class="tempo"><img src="img/parcialmente_nublado.png"></td>
+                    <td class="legenda">Parcialmente nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">sab</td>
+                    <td class="termo">
+                        33<sup>o</sup>C<br />
+                        19<sup>o</sup>C
+                    </td>
+                    <td class="umidade">43%</td>
+                    <td class="tempo"><img src="img/parcialmente_nublado.png"></td>
+                    <td class="legenda">Parcialmente nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">dom</td>
+                    <td class="termo">
+                        33<sup>o</sup>C<br />
+                        19<sup>o</sup>C
+                    </td>
+                    <td class="umidade">43%</td>
+                    <td class="tempo"><img src="img/parcialmente_nublado.png"></td>
+                    <td class="legenda">Parcialmente nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">seg</td>
+                    <td class="termo">
+                        29<sup>o</sup>C<br />
+                        17<sup>o</sup>C
+                    </td>
+                    <td class="umidade">51%</td>
+                    <td class="tempo"><img src="img/parcialmente_nublado.png"></td>
+                    <td class="legenda">Parcialmente nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">ter</td>
+                    <td class="termo">
+                        32<sup>o</sup>C<br />
+                        19<sup>o</sup>C
+                    </td>
+                    <td class="umidade">53%</td>
+                    <td class="tempo"><img src="img/chuva_com_trovoadas.png"></td>
+                    <td class="legenda">Chuva com trovoadas</td>
+                </tr>
+            </table>
+
+            <div class="informativo">
+
+                <p>Esta terça-feira é o começo de uma semana predominantemente ensolarada e quente. <em>Todavia não excluí a possibilidade de chuva com trovoadas para hoje</em>. O dia pode ficar nublado em partes do dia devido aos alto índices de umidade pela manhã, mas a umidade deve baixar para um pico mínimo de 53% nas horas mais quentes da tarde.</p>
+
+                <p>A preocupação maior deverá ficar por conta das altas temperaturas máximas que estarão todas acima de <em>30 &deg;C</em> até domingo. São consideradas temperaturas perigosas para a saúde humana temperaturas iguais ou superiores a <em>27 &deg;C</em>.</p>
+
+                <img src="img/20250225_chuva.png" alt="" class="informativo">
+
+                <table class="grafico esconder">
+                    <tr>
+                        <th>Precipitação</th>
+                        <td style="width: 700px;background: linear-gradient(to right, rgb(0, 128, 255) 30%,#fff0 0%);">
+                        </td>
+                        <td class="nowrap">entre 20 e 40 mm</td>
+                    </tr>
+                    <tr class="escala">
+                        <th>Tempo</th>
+                        <td style="width: 100%;background: linear-gradient(to right, lime 20%,#fff0 0%);"></td>
+                        <td class="nowrap">Tempestades leves</td>
+                    </tr>
+                    <tr class="escala">
+                        <th>Umidade</th>
+                        <td style="width: 100%;background: linear-gradient(to right, #c0ff00 53%,#fff0 0%);"></td>
+                        <td class="nowrap">53%</td>
+                    </tr>
+                </table>
+
+                <figure class="esconder">
+                    <div id="umidade" class="graficoHC">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Highcharts.chart('umidade', {
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Temperaturas mínimas e máximas para os próximos 7 dias'
+                                    },
+                                    xAxis: {
+                                        categories: ["ter","qua","qui","sex","sab","dom","seg"]
+                                    },
+                                    yAxis: [
+                                            {
+                                            title: {
+                                                text: 'Temperatura em °C'
+                                            },
+                                            labels: {
+                                                format: '{value}°C'
+                                            }
+                                        }
+                                    ],
+                                    plotOptions: {
+                                        line: {
+                                            marker: {
+                                                enabled: true
+                                            }
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Mínima',
+                                        data: [19,20,21,20,20,19,19],
+                                        color: '#0000FF'
+                                    },{
+                                        name: 'Máxima',
+                                        data: [34,36,35,35,35,34,30],
+                                        color: '#FF0000'
+                                    }],
+                                    credits: {
+                                        enabled: true,  // Ativa os créditos (true) ou desativa (false)
+                                        text: 'Fonte: CPTEC, Simge',
+                                        href: 'https://www.cptec.inpe.br/'
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                </figure>
+
+                <figure class="esconder">
+                    <div class="graficoHC" id="termogauge">
+                        <script>
+                            Highcharts.chart('termogauge', {
+                                chart: {
+                                    type: 'gauge',
+                                    plotBackgroundColor: null,
+                                    plotBackgroundImage: null,
+                                    plotBorderWidth: 0,
+                                    plotShadow: false,
+                                    height: '80%'
+                                },
+    
+                                title: {
+                                    text: 'Temperatura'
+                                },
+    
+                                pane: {
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: 'rgba(0,0,0,0)',
+                                    center: ['50%', '75%'],
+                                    size: '110%'
+                                },
+    
+                                // the value axis
+                                yAxis: {
+                                    min: -20,
+                                    max: 50,
+                                    tickPixelInterval: 72,
+                                    tickPosition: 'inside',
+                                    tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#8F8F8F',
+                                    tickLength: 30,
+                                    tickWidth: 3,
+                                    minorTickInterval: 30,
+                                    labels: {
+                                        distance: 20,
+                                        style: {
+                                            fontSize: '14px'
+                                        }
+                                    },
+                                    lineWidth: 0,
+                                    plotBands: [{
+                                        from: -20,
+                                        to: -10,
+                                        color: 'hsl(255, 100%, 50%)',
+                                        thickness: 20,
+                                        borderRadius: '50%'
+                                    }, {
+                                        from: 25,
+                                        to: 50,
+                                        color: 'hsl(0, 100%, 50%)', //
+                                        thickness: 20,
+                                        borderRadius: '50%'
+                                    }, {
+                                        from: -12,
+                                        to: -5,
+                                        color: 'hsl(224, 100%, 50%)',
+                                        thickness: 20,
+                                        borderRadius: '0%'
+                                    }, {
+                                        from: -5,
+                                        to: 0,
+                                        color: 'hsl(192, 100%, 50%)', //
+                                        thickness: 20,
+                                        borderRadius: '0%'
+                                    }, {
+                                        from: 0,
+                                        to: 4,
+                                        color: 'hsl(160, 100%, 50%)', //
+                                        thickness: 20,
+                                        borderRadius: '0%'
+                                    }, {
+                                        from: 4,
+                                        to: 10,
+                                        color: 'hsl(128, 100%, 50%)', //
+                                        thickness: 20
+                                    }, {
+                                        from: 10,
+                                        to: 17,
+                                        color: 'hsl(96, 100%, 50%)', //
+                                        thickness: 20
+                                    }, {
+                                        from: 17,
+                                        to: 25,
+                                        color: 'hsl(64, 100%, 50%)', //
+                                        thickness: 20
+                                    }, {
+                                        from: 25,
+                                        to: 28,
+                                        color: 'hsl(32, 100%, 50%)', //
+                                        thickness: 20
+                                    }]
+                                },
+    
+                                series: [{
+                                    name: 'Temperatura máxima',
+                                    data: [32],
+                                    tooltip: {
+                                        valueSuffix: ' °C'
+                                    },
+                                    dataLabels: {
+                                        format: '{y} °C',
+                                        borderWidth: 0,
+                                        color: (
+                                            Highcharts.defaultOptions.title &&
+                                            Highcharts.defaultOptions.title.style &&
+                                            Highcharts.defaultOptions.title.style.color
+                                        ) || '#333333',
+                                        style: {
+                                            fontSize: '16px'
+                                        }
+                                    },
+                                    dial: {
+                                        radius: '100%',
+                                        backgroundColor: 'gray',
+                                        baseWidth: 12,
+                                        baseLength: '0%',
+                                        rearLength: '0%'
+                                    },
+                                    pivot: {
+                                        backgroundColor: 'gray',
+                                        radius: 6
+                                    }
+    
+                                }]
+    
+                            });
+                        </script>
+                     </div>
+                </figure>
+
+            </div>
+
+        </div>
+
+        <div class="informativo">
+                
+            <p>Para se proteger do calor, é importante beber água, usar roupas leves e protetor solar, além de evitar atividades físicas intensas. Beba água ou líquidos sem álcool, mesmo que não tenha sede. Inclua chás, sucos naturais, leite e sopas na sua alimentação. Consuma alimentos leves e frescos, como saladas e frutas. Evite bebidas alcoólicas e com elevado teor de açúcar.</p>
+            
+            <p>Use roupas leves, largas e de cores claras. Use bonés, chapéus, camisas e óculos UVA/UVB. Aplique protetor solar com FPS de no mínimo 30. Reaplique o protetor solar a cada duas horas ou sempre que sair da água. Evite a prática de atividades físicas no período de sol intenso, das 10:00 às 16:00. Faça atividade física em momentos frescos. Tente permanecer em áreas frescas, na sombra ou em ambiente com ar-condicionado.</p>
+            
+            <p>Evite ficar exposto ao sol, procure caminhar pela sombra. Tome banhos frios com frequência e antes de dormir. Fique atento aos sintomas, principalmente em idosos e crianças. Procure ajuda médica se sentir qualquer mal-estar.</p>
+        </div>
+
+
+        <div class="camada esconder">
+            <table id="alerta">
+                <tr>
+                    <td><img src="img/alerta.svg" alt=""></td>
+                    <td>TIPO DE ALERTA:<br />BAIXA UMIDADE</td>
+                    <td><img src="img/cal_i.svg" alt=""></td>
+                    <td>INÍCIO DO ALERTA:<br />17 Fev 12:00</td>
+                    <td rowspan="4">DESCRIÇÃO:<br />
+                        <p>Simge e IGAM alertam para período de baixa umidade relativa do ar (<em>abaixo de 50%</em>) entre os dias 17 e 20 (<em>hoje</em>). Alto risco de complicações respiratórias e problemas relacionados à hidratação.</p>
+                        <p><em>HIDRATE-SE!</em></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="img/grau.svg" alt=""></td>
+                    <td>GRAU DE RISCO:<br />PERIGO REAL</td>
+                    <td><img src="img/cal_f.svg" alt=""></td>
+                    <td>FIM DO ALERTA:<br />20 Fev 23:59</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="camada rodape">
+            <table class="rodape">
+                <tr>
+                    <td>
+                        <img src="img/logo.png" class="logo" alt="">
+                    </td>
+                    <td>
+                        <img src="img/BJM_2025.png" class="logo" alt="">
+                    </td>
+                    <td>
+                        <img src="img/logo-minas.svg" class="logo" alt="">
+                    </td>
+                    <td style="background-color: white;">
+                        <img src="img/dce.ico" class="logo" alt="">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <br />
+
+    <button id="downloadBtn">Baixar como PNG</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const element = document.getElementById('cartao');
+
+            // Captura o conteúdo da <div> como canvas
+            html2canvas(element).then(canvas => {
+                // Converte o canvas para uma imagem base64
+                const imgData = canvas.toDataURL('image/png');
+
+                // Cria um link temporário para download
+                const link = document.createElement('a');
+                link.href = imgData;
+                link.download = 'cartao.png'; // Nome do arquivo de saída
+                document.body.appendChild(link);
+                link.click(); // Simula o clique no link
+                document.body.removeChild(link); // Remove o link após o uso
+            }).catch(error => {
+                console.error('Erro ao capturar a div:', error);
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

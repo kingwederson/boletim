@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+    <style>
+        div.cartao{
+            width: 1080px;
+            height:1080px;
+            border: 1px solid black;
+            background-image: url('img/fundoduplo.png');
+            color: white;
+            font-family: sans-serif;
+        }
+        div.cabecalho{
+            background-color: white;
+            color: orangered;
+        }
+        div.rodape{
+            width:100%;
+            display: block;
+            position: absolute;
+            top:950px;
+            left:0px;
+        }
+        div.rodape table{
+            margin:auto;
+        }
+        div.camada{
+            display: inline-flex;
+        }
+        h1{
+            text-align: center;
+        }
+        img.logo{
+            max-height: 128px;
+        }
+        img.informativo{
+            width:100%;
+        }
+        p{
+            text-align: justify;
+        }
+        table.previsao{
+            border-collapse: collapse;
+            border: 1px solid white;
+            margin: 7px;
+        }
+        table.previsao td{
+            white-space: nowrap;
+        }
+        th,td{
+            border-top: 0.5px dotted white;
+            padding:3px;
+        }
+        th{
+            font-family: 'Neo Sans';
+        }
+        td.data{
+            font-family: 'Neo Sans';
+        }
+        td.termo{
+            font-family: 'Neo Sans';
+        }
+        td.legenda{
+            font-family: 'Nimbus Sans Narrow';
+        }
+        table#alerta{
+            border-collapse: collapse;
+            margin: 7px;
+        }
+        table#alerta td{
+            border: 1px dotted yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="cartao" id="cartao">
+
+        <div class="cabecalho">
+            <table style="width:80%;margin:auto;">
+                <tr>
+                    <td>
+                        <img src="img/logo.png" class="logo">
+                    </td>
+                    <td>
+                        <h1>BOLETIM DA DEFESA CIVIL<br/>quarta-feira 15 de janeiro de 2025</h1>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="camada">
+
+            <table class="previsao">
+                <tr>
+                    <th colspan="4"><h3>Previsão para Bom Jardim de Minas</h3></th>
+                </tr>
+                <tr>
+                    <th class="data">data</th>
+                    <th class="termo">Temperatura</th>
+                    <th class="tempo" colspan="2">Previsão do tempo</th>
+                </tr>
+                <tr>
+                    <td class="data">qua</td>
+                    <td class="termo">16<sup>o</sup>C &#127777; 21<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">qui</td>
+                    <td class="termo">17<sup>o</sup>C &#127777; 22<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/chuva.png"></td>
+                    <td class="legenda">Chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">sex</td>
+                    <td class="termo">17<sup>o</sup>C &#127777; 24<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/chuva_com_trovoadas.png"></td>
+                    <td class="legenda">Chuva com trovoadas</td>
+                </tr>
+                <tr>
+                    <td class="data">sab</td>
+                    <td class="termo">17<sup>o</sup>C &#127777; 27<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/nublado.png"></td>
+                    <td class="legenda">Nublado</td>
+                </tr>
+                <tr>
+                    <td class="data">dom</td>
+                    <td class="termo">18<sup>o</sup>C &#127777; 27<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/tempestades.png"></td>
+                    <td class="legenda">Tempestades isoladas</td>
+                </tr>
+                <tr>
+                    <td class="data">seg</td>
+                    <td class="termo">18<sup>o</sup>C &#127777; 27<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/tempestades.png"></td>
+                    <td class="legenda">Tempestades</td>
+                </tr>
+                <tr>
+                    <td class="data">ter</td>
+                    <td class="termo">18<sup>o</sup>C &#127777; 27<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">qua</td>
+                    <td class="termo">18<sup>o</sup>C &#127777; 26<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+            </table>
+    
+            <div>
+                <p>Não há previsão de risco hidrológico para a região em que Bom Jardim de Minas se localiza ainda que haja prossibilidade de pancadas de chuva. A precipitação prevista para o dia 15 de janeiro deve ficar entre 5 e 20 mm. Para quinta-feira e sexta-feira é esperado que a precipitação acumulado fique entre 20 e 40 mm em todo o território, sobretudo na sexta-feira.</p>
+                <img src="https://simge.mg.gov.br/documents/2186200/0/20250115_chuva.png" alt="" class="informativo">
+                <p>A Defesa Civil irá atualizar a previsão do tempo diariamente e alertará sempre em caso de eventos meteorológicos preocupantes.</p>
+            </div>
+
+            <table class="previsao">
+                <tr>
+                    <th colspan="4"><h3>Previsão para Taboão</h3></th>
+                </tr>
+                <tr>
+                    <th class="data">data</th>
+                    <th class="termo">Temperatura</th>
+                    <th class="tempo" colspan="2">Previsão do tempo</th>
+                </tr>
+                <tr>
+                    <td class="data">qua</td>
+                    <td class="termo">20<sup>o</sup>C &#127777; 26<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">qui</td>
+                    <td class="termo">21<sup>o</sup>C &#127777; 28<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/chuva.png"></td>
+                    <td class="legenda">Chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">sex</td>
+                    <td class="termo">21<sup>o</sup>C &#127777; 26<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">sab</td>
+                    <td class="termo">22<sup>o</sup>C &#127777; 26<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/chuva.png"></td>
+                    <td class="legenda">Chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">dom</td>
+                    <td class="termo">22<sup>o</sup>C &#127777; 28<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">seg</td>
+                    <td class="termo">21<sup>o</sup>C &#127777; 28<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/tempestades.png"></td>
+                    <td class="legenda">Tempestades</td>
+                </tr>
+                <tr>
+                    <td class="data">ter</td>
+                    <td class="termo">21<sup>o</sup>C &#127777; 27<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+                <tr>
+                    <td class="data">qua</td>
+                    <td class="termo">21<sup>o</sup>C &#127777; 29<sup>o</sup>C</td>
+                    <td class="tempo"><img src="img/pancadas_de_chuva.png"></td>
+                    <td class="legenda">Pancadas de chuva</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="camada">
+            <table id="alerta">
+                <tr>
+                    <td><img src="img/alerta.svg" alt=""></td><td>TIPO DE ALERTA:<br/>NÃO HÁ ALERTAS PARA HOJE</td>
+                    <td><img src="img/cal_i.svg" alt=""></td><td>INÍCIO DO ALERTA:<br/>SEM EVENTOS</td>
+                    <td rowspan="4">DESCRIÇÃO:<br/>Dia tranquilo sem alertas sobre condições climáticas ou hidrológicas.</td>
+                </tr>
+                <tr>
+                    <td><img src="img/grau.svg" alt=""></td><td>GRAU DE RISCO:<br/>SEM RISCO</td>
+                    <td><img src="img/cal_f.svg" alt=""></td><td>FIM DO ALERTA:<br/>SEM EVENTOS</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="camada rodape">
+            <table class="rodape">
+                <tr>
+                    <td>
+                        <img src="img/BJM_2025.png" class="logo" alt="">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <button id="download" aria-label="Baixar o cartão como PNG">Download como PNG</button>
+
+    <script>
+        document.getElementById('download').addEventListener('click', () => {
+            const element = document.getElementById('cartao');
+            html2canvas(element, { useCORS: true }).then((canvas) => {
+                // Gera a imagem como uma URL
+                const dataURL = canvas.toDataURL('image/png');
+                // Cria o link para download
+                const link = document.createElement('a');
+                link.href = dataURL;
+                link.download = 'Boletim/captura.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch(error => {
+                console.error('Erro ao gerar a captura:', error);
+            });
+        });
+
+      </script>
+</body>
+</html>
